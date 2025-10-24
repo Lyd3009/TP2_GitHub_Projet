@@ -28,3 +28,15 @@ while len(guessed) < 24:
         country_x = data[data.country == answer]['x'].item() # i did int() and it worked as well
         country_y = data[data.country == answer]['y'].item()
         country.display_country(answer,country_x,country_y)
+
+    if answer == 'Exit':
+        non_guessed = [country for country in countries if country not in guessed]
+    #     non_guessed = {
+    #         'country' : []
+    #     }
+    #     for country in countries:
+    #         if country not in guessed:
+    #             non_guessed['country'].append(country) # we can create a list and then append the calue to the list , and then use the same meth to convert it into a csv file (the column name country will not appear i prefered using a dict)
+
+        pandas.DataFrame(non_guessed).to_csv('score/non_guessed_countries.csv')
+        break
